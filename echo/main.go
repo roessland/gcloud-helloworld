@@ -15,9 +15,10 @@ func main() {
 	}
 	http.HandleFunc("/", hello)
 
+	log.Print("Started")
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), nil))
 }
 
 func hello(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Hello, 世界"))
+	w.Write([]byte("Hello, " + r.URL.Path[1:]))
 }
